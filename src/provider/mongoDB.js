@@ -4,7 +4,12 @@ const mongoose = require("mongoose");
 class MongoDB {
   static async connect() {
     try {
-      await mongoose.connect(process.env.MONGO_CNXN_STRING);
+      await mongoose.connect(process.env.MONGO_CNXN_STRING, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 30000,
+        socketTimeoutMS: 60000,
+      });
     } catch (error) {
       console.error("Error while connecting to MongoDB : ", error);
     }
