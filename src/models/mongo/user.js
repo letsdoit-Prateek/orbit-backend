@@ -7,7 +7,7 @@ const UserDetailSchema = new Schema(
     phoneNumber: { type: String, required: true },
   },
   {
-    collection: "UserDetail",
+    collection: "UserDetails",
     strict: true,
   }
 );

@@ -8,7 +8,7 @@ export default class Transaction extends Controller {
         // Configure the route and function name
         const routingConfig = {
           get: {
-            "/": "getAllTransactionList",
+            "/": "getAllTranscation",
             "/user-transaction": "getUserWiseTransaction",
           },
         };
@@ -46,6 +46,37 @@ export default class Transaction extends Controller {
    *      - TokenAuth: []
    *      - ClientIdAndSecretAuth: []
    *     tags: [Transaction]
+   *     parameters:
+   *       - name: status
+   *         in: query
+   *         description: status
+   *         schema:
+   *           type: string
+   *       - name: type
+   *         in: query
+   *         description: type
+   *         schema:
+   *           type: string
+   *       - name: fromDate
+   *         in: query
+   *         description: fromDate
+   *         schema:
+   *           type: string
+   *       - name: toDate
+   *         in: query
+   *         description: toDate
+   *         schema:
+   *           type: string
+   *       - name: page
+   *         in: query
+   *         description: page
+   *         schema:
+   *           type: string
+   *       - name: limit
+   *         in: query
+   *         description: limit
+   *         schema:
+   *           type: string
    *     responses:
    *       200:
    *         description: Successful response with a list of all the transaction user wise
@@ -53,12 +84,20 @@ export default class Transaction extends Controller {
    *         description: Server error occurred
    */
 
-  static async getAllTranscationList({ res }){
+  static async getAllTranscation({ req, res }){
+    const { status, fromDate, toDate, type, page = 1, limit = 10 } = req.query;
     try {
-        const result = await TransactionService.getAllTranscationList();
+        const result = await TransactionService.getAllTranscationList({
+          status,
+          type,
+          fromDate,
+          toDate,
+          page,
+          limit
+        });
         sendResponse.success({
-          response: res,
-          resultObj: result,
+          res: res,
+          resData: result,
         });
     } catch (error) {
     sendResponse.error({ error: error, res: res });
@@ -80,6 +119,36 @@ export default class Transaction extends Controller {
    *         description: userId
    *         schema:
    *           type: string
+   *       - name: status
+   *         in: query
+   *         description: status
+   *         schema:
+   *           type: string
+   *       - name: type
+   *         in: query
+   *         description: type
+   *         schema:
+   *           type: string
+   *       - name: fromDate
+   *         in: query
+   *         description: fromDate
+   *         schema:
+   *           type: string
+   *       - name: toDate
+   *         in: query
+   *         description: toDate
+   *         schema:
+   *           type: string
+   *       - name: page
+   *         in: query
+   *         description: page
+   *         schema:
+   *           type: string
+   *       - name: limit
+   *         in: query
+   *         description: limit
+   *         schema:
+   *           type: string
    *     responses:
    *       200:
    *         description: Successful response with a list of all the transaction for a user
@@ -87,12 +156,21 @@ export default class Transaction extends Controller {
    *         description: Server error occurred
    */
 
-  static async getUserWiseTransaction({res}) {
+  static async getUserWiseTransaction({req, res}) {
+    const { status, fromDate, toDate, type, page = 1, limit = 10, userId } = req.query;
     try {
-        const result = await TransactionService.getAllTranscationList();
+        const result = await TransactionService.getUserTranscationList({
+            userId,
+            status,
+            type,
+            fromDate,
+            toDate,
+            page,
+            limit
+        });
         sendResponse.success({
-          response: res,
-          resultObj: result,
+          res: res,
+          resData: result,
         });
     } catch (error) {
     sendResponse.error({ error: error, res: res });

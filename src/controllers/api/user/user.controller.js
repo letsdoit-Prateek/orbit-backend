@@ -54,49 +54,18 @@ export default class User extends Controller {
    *           type: string
    *     responses:
    *       200:
-   *         description: Successful response with a list of user profiles
-   *         content:
-   *           application/json:
-   *             schema:
-   *               type: array
-   *               items:
-   *                 type: object
-   *                 properties:
-   *                   firstName:
-   *                     type: string
-   *                     description: user first name
-   *                   lastName:
-   *                     type: string
-   *                     description: user last name
-   *                   email:
-   *                     type: string
-   *                     description: user email address
-   *                   mobileNO:
-   *                     type: string
-   *                     description: user mobile number
-   *                   mandateId:
-   *                     type: string
-   *                     description: user mandateId
-   *                   mandateUrl:
-   *                     type: string
-   *                     description: user mandateUrl
-   *                   mandateStatus:
-   *                     type: string
-   *                     description: user mandateStatus
-   *                   uccCode:
-   *                     type: string
-   *                     description: user uccCode
+   *         description: Successful response with a details of the user
    *       500:
    *         description: Server error occurred
    */
   static async getUserProfile({ req, res } = {}) {
     try {
       const result = await UserService.getUserProfile({
-        userId: await Controller.getUserId({ req }),
+        userId: req.query.userId,
       });
-      sendResponse.sendCustomSuccessObjResponse({
-        response: res,
-        resultObj: result,
+      sendResponse.success({
+        res: res,
+        resData: result,
       });
     } catch (error) {
       sendResponse.error({ error: error, res: res });

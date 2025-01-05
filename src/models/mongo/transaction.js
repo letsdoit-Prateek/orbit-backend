@@ -1,5 +1,6 @@
 /* eslint-disable */
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
 const TranscationDetailSchema = new Schema(
   {
@@ -7,10 +8,10 @@ const TranscationDetailSchema = new Schema(
     type: { type: String, enum: ['debit', 'credit'], required: true },
     transactionDate: { type: Date, required: true },
     amount: { type: Number, required: true },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'UserDetails', required: true },
   },
   {
-    collection: "TransactionDetail",
+    collection: "TransactionDetails",
     strict: true,
   }
 );

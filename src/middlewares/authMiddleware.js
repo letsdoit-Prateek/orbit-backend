@@ -1,5 +1,4 @@
 /* eslint-disable */
-import AzureVault from "../provider/azureVault";
 import logger from "../util/logger";
 import sendResponse from "../util/responseSender";
 import Utils from "../util/utils";
