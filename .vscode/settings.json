@@ -2,5 +2,7 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/e524b28f-50d0-4af0-9d08-37d30dc82190/resourceGroups/RG_DEV/providers/Microsoft.Web/sites/orbitBackend",
+    "appService.deploySubpath": "."
 }
