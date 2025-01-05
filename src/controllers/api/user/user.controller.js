@@ -1,5 +1,4 @@
 /* eslint-disable */
-import multer from "multer";
 import sendResponse from "../../../util/responseSender";
 import Controller from "../../Controller";
 import ControllerFactory from "../../ControllerFactory";
@@ -20,10 +19,6 @@ export default class User extends Controller {
    * @swagger
    * components:
    *   securitySchemes:
-   *     TokenAuth:                  # Bearer Token (JWT) scheme
-   *       type: http
-   *       scheme: bearer
-   *       description: Use a Bearer Token (JWT) to authenticate access to APIs.
    *     ClientIdAndSecretAuth:      # Client ID and Secret scheme
    *       type: apiKey
    *       in: header
@@ -43,7 +38,6 @@ export default class User extends Controller {
    *     summary: Get user profile details.
    *     description: Get user profiles details.
    *     security:
-   *      - TokenAuth: []
    *      - ClientIdAndSecretAuth: []
    *     tags: [User]
    *     parameters:

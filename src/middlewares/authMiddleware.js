@@ -1,18 +1,17 @@
 /* eslint-disable */
-import logger from "../util/logger";
 import sendResponse from "../util/responseSender";
 import Utils from "../util/utils";
 
 export default class AuthMiddleware {
 
   static async authenticateRequest(req, res, next) {
-    logger.debug("Hitting URL: " + req.url);
+    console.error("Hitting URL: " + req.url);
     req.context = {};
 
     // Checking for valid auth headers
     const authHeader = req.headers.authorization;
     if (!Utils.$isValid(authHeader)) {
-      logger.error("Headers missing.");
+      console.error("Headers missing.");
       return sendResponse.unAuthorizedAccess({
         res: res,
         infoMsg: "No token provided!",
@@ -34,7 +33,7 @@ export default class AuthMiddleware {
       apiKey: authHeader.split("-")[1],
     });
     if (!isAPIkeyVerified) {
-      logger.error("Unmatched I4E ApiKey.");
+      console.error("Unmatched I4E ApiKey.");
       return sendResponse.unAuthorizedAccess({
         res: res,
         infoMsg: "Unmatched ApiKey!",

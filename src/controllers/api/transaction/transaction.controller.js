@@ -20,10 +20,6 @@ export default class Transaction extends Controller {
      * @swagger
      * components:
      *   securitySchemes:
-     *     TokenAuth:                  # Bearer Token (JWT) scheme
-     *       type: http
-     *       scheme: bearer
-     *       description: Use a Bearer Token (JWT) to authenticate access to APIs.
      *     ClientIdAndSecretAuth:      # Client ID and Secret scheme
      *       type: apiKey
      *       in: header
@@ -43,7 +39,6 @@ export default class Transaction extends Controller {
    *     summary: Get all transaction details.
    *     description: Get all transaction details.
    *     security:
-   *      - TokenAuth: []
    *      - ClientIdAndSecretAuth: []
    *     tags: [Transaction]
    *     parameters:
@@ -110,7 +105,6 @@ export default class Transaction extends Controller {
    *     summary: Get user wise transaction details.
    *     description: Get user wise transaction details.
    *     security:
-   *      - TokenAuth: []
    *      - ClientIdAndSecretAuth: []
    *     tags: [Transaction]
    *     parameters:
