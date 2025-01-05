@@ -1,0 +1,19 @@
+{
+  "httpStatus": {
+    "200": "Success!",
+    "400": "Bad request!",
+    "401": "Session expired!",
+    "403": "Unauthorized access!",
+    "500": "Internal server error!"
+  },
+  "swaggerInfo": {
+    "title": "OrbitWallet-API",
+    "description": "Node APIs for OrbitWallet",
+    "contact": { "name": "OrbitWallet" },
+    "servers": ["http://localhost:4000"]
+  },
+  "swaggerCss": {
+    "customCss": ".swagger-ui .topbar { display: none }",
+    "customSiteTitle": "OrbitWallet Node APIs Swagger UI"
+  }
+}
